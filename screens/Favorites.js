@@ -8,7 +8,7 @@ import { useDispatch,useSelector } from "react-redux";
 import ContactThumbnail from "../components/ContactThumbnail";
 
 const keyExtractor = ({ phone }) => phone;
-const Favorites = ()=>
+const Favorites = ({navigation})=>
 {
     const {contacts,loading,error} = useSelector((state)=>state);
 
