@@ -80,7 +80,7 @@ const ContactsScreens = ()=>
                             title: name.split(' ')[0],
                             headerTintColor: 'white',
                             headerStyle: {
-                                backgroudColor: colors.blue,
+                                backgroundColor: colors.blue,
                             }
                         };
                     }
