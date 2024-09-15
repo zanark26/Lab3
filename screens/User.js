@@ -1,14 +1,15 @@
-import React,{useState,useEffect} from "react";
-import {StyleSheet,Text,View,ActivityIndicator,} from 'react-native';
-import { fetchUserContact } from "../utility/api";
+import React, {useState, useEffect} from "react";
+import { StyleSheet, Text, View, ActivityIndicator,} from 'react-native';
+import { fetchUserContacts } from "../utility/api";
 import ContactThumbnail from "../components/ContactThumbnail";
 import colors from "../utility/colors";
 
 const User = ()=>
 {
-    const [user,setUser] = useState([]);
-    const [loading,setLoading] = useState([true]);
-    const [error,setError] = useState([false]);
+    const [user, setUser] = useState([]);
+    const [loading, setLoading] = useState([true]);
+    const [error, setError] = useState([false]);
+
     useEffect(()=>{
         fetchUserContacts()
         .then(
@@ -19,20 +20,19 @@ const User = ()=>
             }
         )
         .catch(
-            e=>{
-                
+            e=>{  
                 setLoading(false);
                 setError(true);
             }
         )
     });
-    const {avatar,name,phone} = user;
+    const { avatar, name, phone} = user;
         
     return (
         <View style={styles.container}>
-            {loading&&<ActivityIndicator size="large"/>}
-            {error&&<Text>Error...</Text>}
-            {!loading&&!error&&(
+            {loading && <ActivityIndicator size="large"/>}
+            {error && <Text>Error...</Text>}
+            {!loading && !error &&(
                 <ContactThumbnail avatar={avatar} name={name} phone={phone}/>
             )}
         </View>
@@ -47,4 +47,5 @@ const styles = StyleSheet.create({
     },
 
 });
+
 export default User;

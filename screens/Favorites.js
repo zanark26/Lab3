@@ -1,35 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
+import React,{useState, useEffect} from "react";
+import {
+    StyleSheet,Text,View,FlatList,ActivityIndicator,
+
+} from 'react-native';
 import { fetchContacts } from "../utility/api";
+import { useDispatch,useSelector } from "react-redux";
 import ContactThumbnail from "../components/ContactThumbnail";
-import colors from "../utility/colors";
 
 const keyExtractor = ({ phone }) => phone;
+const Favorites = ()=>
+{
+    const {contacts,loading,error} = useSelector((state)=>state);
 
-const Favorites = ({ navigation }) => {
-    const [contacts, setContacts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    useEffect(() => {
+    useEffect(()=>{
         fetchContacts()
-            .then(contacts => {
+        .then(
+            contacts=>{
                 setContacts(contacts);
                 setLoading(false);
                 setError(false);
-            })
-            .catch(e => {
+            }
+        )
+        .catch(
+            e=>{
+                
                 setLoading(false);
                 setError(true);
-            });
-    }, []);
-
-    const renderFavoriteThumbnail = ({ item }) => {
+            }
+        )
+    })
+    const renderFavoriteThumbnail = ({ item })=> {
         const { avatar } = item;
         return (
             <ContactThumbnail
                 avatar={avatar}
-                onPress={() => navigation.navigate('Profile', { contact: item })}
+                onPress={() => navigation.navigate('Profile',{ contact: item})}
             />
         );
     };
@@ -38,7 +43,7 @@ const Favorites = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {loading && <ActivityIndicator size="large" />}
+            {loading && <ActivityIndicator size="large"/>}
             {error && <Text>Error...</Text>}
             {!loading && !error && (
                 <FlatList
@@ -56,11 +61,11 @@ const Favorites = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        justifyContent: 'center',
-        flex: 1,
+        justifyContent:'center',
+        flex:1,
     },
     list: {
-        alignItems: 'center',
+        alignItems:'center',
     },
 });
 

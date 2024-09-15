@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet,View,TouchableHighlight,Image,Text } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialIcons'
-import { MaterialIcons } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet,View,TouchableOpacity,Image,Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
 const ContactThumbnail = ({name, phone, avatar,textColor,onPress,})=>
@@ -9,28 +9,29 @@ const ContactThumbnail = ({name, phone, avatar,textColor,onPress,})=>
     const colorStyle ={ 
         color: textColor,
     };
-    const ImageComponent = onPress ? TouchableHighlight : View;
+    const ImageComponent = onPress ? TouchableOpacity : View;
     return (
         <View style={styles.container}>
             <ImageComponent onPress={onPress}>
                 <Image
-                source={{
-                    uri: avatar,
-                }}
-                style={styles.avatar}
+                    source={{
+                        uri: avatar,
+                    }}
+                    style={styles.avatar}
                 />
             </ImageComponent>
-            {name!==''&& <Text style={[styles.name,colorStyle]}>{name}</Text>}
-            {phone!=='' && (
+            {name !== '' && <Text style={[styles.name,colorStyle]}>{name}</Text>}
+            {phone !== '' && (
                 <View style={styles.phoneSection}>
-                    <Icon name="phone" size={16} style={{color:textColor}}/>
-                    <Text style={[styles.phone,colorStyle]}>{phone}</Text>
-                    </View>
+                    <Icon name="phone" size={16} style={{ color: textColor}}/>
+                    <Text style={[styles.phone, colorStyle]}>{phone}</Text>
+                </View>
             )}
         </View>
     );
 }
 export default ContactThumbnail;
+
 ContactThumbnail.propTypes = {
     name: PropTypes.string,
     avatar: PropTypes.string,

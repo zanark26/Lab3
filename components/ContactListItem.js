@@ -8,16 +8,16 @@ const ContactListItem=({
 {
     return (
         <TouchableHighlight
-        underlayColor={colors.grey}
-        style={styles.container}
-        onPress={onPress}
+            underlayColor={colors.grey}
+            style={styles.container}
+            onPress={onPress}
         >
             <View style={styles.contactInfo}>
-                <Image style={styles.avatar}
-                source={{
-                    uri: avatar,
-                }}
-
+                <Image 
+                    style={styles.avatar}
+                    source={{
+                        uri: avatar,
+                    }}
                 />
             <View style={styles.details}>
                 <Text style={[styles.title]}>{name}</Text>
@@ -28,6 +28,7 @@ const ContactListItem=({
     );
 }
 export default ContactListItem;
+
 ContactListItem.propTypes = {
     name: PropTypes.string,
     avatar: PropTypes.string,

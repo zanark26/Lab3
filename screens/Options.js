@@ -1,6 +1,7 @@
-import React,{useState,useEffect} from "react";
-import { StyleSheet,View,Text } from "react-native";
+import React,{useState, useEffect} from "react";
+import { StyleSheet, View, Text } from "react-native";
 import DetailListItem from '../components/DetailListItem';
+
 const Options =()=>
 {
     return (
@@ -19,4 +20,5 @@ const styles = StyleSheet.create(
         },
     }
 );
+
 export default Options;
